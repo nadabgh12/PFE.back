@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inscription Réussie</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <style>
+        .success-container {
+            margin-top: 100px;
+            text-align: center;
+        }
+        .success-icon {
+            font-size: 72px;
+            color: #28a745;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 offset-md-3 success-container">
+                <div class="success-icon">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <h2 th:if="${userType == 'ambassadeur'}">Félicitations Ambassadeur!</h2>
+                <h2 th:if="${userType == 'parraineur'}">Félicitations Parraineur!</h2>
+                <p>Votre inscription a été enregistrée avec succès.</p>
+                
+                <div th:if="${userType == 'ambassadeur'}">
+                    <p>Votre demande est en cours de traitement. Vous recevrez un email de confirmation une fois approuvée.</p>
+                </div>
+                
+                <div class="mt-4">
+                    <a href="/login" class="btn btn-primary">Se connecter</a>
+                    <a href="/" class="btn btn-secondary ml-2">Retour à l'accueil</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Font Awesome pour les icônes -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <!-- Bootstrap JS -->
+    <script src="/js/jquery-3.5.1.slim.min.js"></script>
+    <script src="/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

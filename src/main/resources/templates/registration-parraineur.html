@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Inscription Parraineur</title>
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+          crossorigin="anonymous">
+    <style>
+        .form-text { color: #6c757d; font-size: 0.875em; margin-top: 0.25rem; }
+        .input-group-prepend select {
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+        }
+        .input-group input {
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+        }
+        .is-invalid { border-color: #dc3545; }
+        .invalid-feedback { color: #dc3545; font-size: 0.875em; }
+        .required-field::after { content: " *"; color: red; }
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" th:href="@{/}">Inscription Parraineur</a>
+        </div>
+    </div>
+</nav>
+
+<br><br>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+
+            <!-- Message de succès -->
+            <div th:if="${param.success}">
+                <div class="alert alert-success">
+                    Votre inscription a été effectuée avec succès ! Vous pouvez maintenant vous connecter.
+                </div>
+            </div>
+
+            <!-- Message d'erreur global -->
+            <div th:if="${error}" class="alert alert-danger">
+                <p th:text="${error}"></p>
+            </div>
+
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Formulaire d'inscription Parraineur</h3>
+                </div>
+                <div class="panel-body">
+                    <form th:action="@{/registration/parraineur}" method="post" th:object="${user}" id="registrationForm">
+                        <!-- Champ masqué pour le type utilisateur -->
+                        <input type="hidden" th:field="*{userType}" value="PARRAINEUR"/>
+
+                        <h4>Informations personnelles</h4>
+                        <hr>
+
+                        <div class="form-group">
+                            <label class="control-label required-field" for="firstName">Prénom</label>
+                            <input id="firstName" class="form-control" th:field="*{firstName}" required
+                                   th:classappend="${#fields.hasErrors('firstName')} ? 'is-invalid' : ''"/>
+                            <div th:if="${#fields.hasErrors('firstName')}" class="invalid-feedback">
+                                <p th:errors="*{firstName}"></p>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label required-field" for="lastName">Nom</label>
+                            <input id="lastName" class="form-control" th:field="*{lastName}" required
+                                   th:classappend="${#fields.hasErrors('lastName')} ? 'is-invalid' : ''"/>
+                            <div th:if="${#fields.hasErrors('lastName')}" class="invalid-feedback">
+                                <p th:errors="*{lastName}"></p>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label required-field" for="email">Email</label>
+                            <input id="email" type="email" class="form-control" th:field="*{email}" required
+                                   th:classappend="${#fields.hasErrors('email')} ? 'is-invalid' : ''"/>
+                            <div th:if="${#fields.hasErrors('email')}" class="invalid-feedback">
+                                <p th:errors="*{email}"></p>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label required-field" for="password">Mot de passe</label>
+                            <input id="password" type="password" class="form-control" th:field="*{password}" required
+                                   th:classappend="${#fields.hasErrors('password')} ? 'is-invalid' : ''"/>
+                            <div th:if="${#fields.hasErrors('password')}" class="invalid-feedback">
+                                <p th:errors="*{password}"></p>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label required-field" for="phone">Numéro de téléphone</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <select class="form-control" id="phonePrefix" style="max-width: 120px;">
+                                        <option value="+216">+216 (Tunisie)</option>
+                                        <option value="+974">+974 (Qatar)</option>
+                                    </select>
+                                </div>
+                                <input id="phone" type="tel" class="form-control" th:field="*{phone}" required
+                                       th:classappend="${#fields.hasErrors('phone')} ? 'is-invalid' : ''"/>
+                            </div>
+                            <div th:if="${#fields.hasErrors('phone')}" class="invalid-feedback">
+                                <p th:errors="*{phone}"></p>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label required-field" for="cin">CIN</label>
+                            <input id="cin" type="text" class="form-control" th:field="*{cin}" required
+                                   th:classappend="${#fields.hasErrors('cin')} ? 'is-invalid' : ''"/>
+                            <div th:if="${#fields.hasErrors('cin')}" class="invalid-feedback">
+                                <p th:errors="*{cin}"></p>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label required-field" for="birthDate">Date de naissance</label>
+                            <input id="birthDate" type="date" class="form-control" th:field="*{birthDate}" required
+                                   th:classappend="${#fields.hasErrors('birthDate')} ? 'is-invalid' : ''"/>
+                            <div th:if="${#fields.hasErrors('birthDate')}" class="invalid-feedback">
+                                <p th:errors="*{birthDate}"></p>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label required-field" for="country">Pays</label>
+                            <select id="country" class="form-control" th:field="*{country}" required
+                                    th:classappend="${#fields.hasErrors('country')} ? 'is-invalid' : ''">
+                                <option value="Tunisie">Tunisie</option>
+                                <option value="Qatar">Qatar</option>
+                            </select>
+                            <div th:if="${#fields.hasErrors('country')}" class="invalid-feedback">
+                                <p th:errors="*{country}"></p>
+                            </div>
+                        </div>
+
+                        <h4>Informations de Parrainage</h4>
+                        <hr>
+
+                        <div class="form-group">
+                            <label class="control-label required-field" for="gouvernorat">Gouvernorat</label>
+                            <select id="gouvernorat" class="form-control" th:field="*{gouvernorat}" required
+                                    th:classappend="${#fields.hasErrors('gouvernorat')} ? 'is-invalid' : ''">
+                                <option value="">-- Sélectionnez un gouvernorat --</option>
+                                <option th:each="gov : ${gouvernorats}" th:value="${gov}" th:text="${gov}"></option>
+                            </select>
+                            <div th:if="${#fields.hasErrors('gouvernorat')}" class="invalid-feedback">
+                                <p th:errors="*{gouvernorat}"></p>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-info">S'inscrire</button>
+                            <a th:href="@{/}" class="btn btn-default">Annuler</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <p>Déjà inscrit ? <a th:href="@{/login}">Connectez-vous ici</a></p>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        document.getElementById('birthDate').max = new Date().toISOString().split('T')[0];
+    });
+</script>
+</body>
+</html>

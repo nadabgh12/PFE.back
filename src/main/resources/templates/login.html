@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Connexion</title>
+<link rel="stylesheet"
+    href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+    integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+    crossorigin="anonymous">
+<style>
+    .login-panel {
+        margin-top: 50px;
+    }
+    .panel-heading {
+        padding: 15px 15px 0 15px;
+    }
+    .panel-title {
+        font-size: 1.5em;
+    }
+</style>
+</head>
+<body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#" th:href="@{/}">Système de Parrainage</a>
+            </div>
+        </div>
+    </nav>
+    
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <div class="panel panel-default login-panel">
+                    <div class="panel-heading text-center">
+                        <h3 class="panel-title">Connexion</h3>
+                    </div>
+                    <div class="panel-body">
+                        <form th:action="@{/login}" method="post">
+                            
+                            <!-- error message -->
+                            <div th:if="${param.error}">
+                                <div class="alert alert-danger">Email ou mot de passe incorrect</div>
+                            </div>
+                        
+                            <!-- logout message -->
+                            <div th:if="${param.logout}">
+                                <div class="alert alert-info">Vous avez été déconnecté avec succès</div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="username">Email</label>
+                                <input type="text" class="form-control" id="username" name="username"
+                                placeholder="Entrez votre email" autofocus="autofocus">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="password">Mot de passe</label>
+                                <input type="password" id="password" name="password" class="form-control"
+                                    placeholder="Entrez votre mot de passe" />
+                            </div>
+                            
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary btn-block">Se connecter</button>
+                            </div>
+                            
+                            <div class="text-center">
+                                <p>Nouvel utilisateur? <a th:href="@{/}">Inscrivez-vous ici</a></p>
+                                <p><a href="#">Mot de passe oublié?</a></p>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

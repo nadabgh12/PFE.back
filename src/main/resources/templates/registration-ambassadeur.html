@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Inscription Ambassadeur</title>
+<link rel="stylesheet"
+    href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+    integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+    crossorigin="anonymous">
+<style>
+    .form-text {
+        color: #6c757d;
+        font-size: 0.875em;
+        margin-top: 0.25rem;
+    }
+    .input-group-prepend select {
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+    }
+    .input-group input {
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+    }
+    .is-invalid {
+        border-color: #dc3545;
+    }
+    .invalid-feedback {
+        color: #dc3545;
+        font-size: 0.875em;
+    }
+    .required-field::after {
+        content: " *";
+        color: red;
+    }
+</style>
+</head>
+<body>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#" th:href="@{/}">Inscription Ambassadeur</a>
+        </div>
+    </div>
+</nav>
+
+<br><br>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div th:if="${param.success}">
+                <div class="alert alert-success">
+                    Votre demande d'inscription a été envoyée avec succès! 
+                    Un administrateur va la examiner et vous recevrez un email de confirmation.
+                </div>
+            </div>
+
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Formulaire d'inscription Ambassadeur</h3>
+                </div>
+                <div class="panel-body">
+                    <form th:action="@{/registration/ambassadeur}" method="post" th:object="${user}" id="registrationForm">
+                        <input type="hidden" name="userType" value="AMBASSADEUR">
+
+                        <h4>Informations personnelles</h4>
+                        <hr>
+
+                        <!-- Prénom -->
+                        <div class="form-group">
+                            <label class="control-label required-field" for="firstName">Prénom</label>
+                            <input id="firstName" class="form-control" th:field="*{firstName}"
+                                pattern="^[a-zA-ZÀ-ÿ\s\-']*$" 
+                                title="Seules les lettres, espaces, traits d'union et apostrophes sont autorisés"
+                                required autofocus="autofocus" />
+                            <small class="form-text">Seules les lettres, espaces, traits d'union et apostrophes sont autorisés</small>
+                        </div>
+
+                        <!-- Nom -->
+                        <div class="form-group">
+                            <label class="control-label required-field" for="lastName">Nom</label>
+                            <input id="lastName" class="form-control" th:field="*{lastName}"
+                                pattern="^[a-zA-ZÀ-ÿ\s\-']*$" 
+                                title="Seules les lettres, espaces, traits d'union et apostrophes sont autorisés"
+                                required />
+                        </div>
+
+                        <!-- Email -->
+                        <div class="form-group">
+                            <label class="control-label required-field" for="email">Email</label>
+                            <input id="email" type="email" class="form-control" th:field="*{email}"
+                                pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+                                placeholder="ex: ambassadeur@example.com"
+                                title="Format: user@domain.com"
+                                required />
+                        </div>
+
+                        <!-- Mot de passe -->
+                        <div class="form-group">
+                            <label class="control-label required-field" for="password">Mot de passe</label>
+                            <input id="password" type="password" class="form-control" th:field="*{password}"
+                                pattern="^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\S+$).{8,}$"
+                                title="Doit contenir au moins 1 majuscule, 1 minuscule, 1 chiffre et 1 caractère spécial (@#$%^&+=)"
+                                required />
+                            <small class="form-text">
+                                Exigences: 8+ caractères, 1 majuscule, 1 minuscule, 1 chiffre, 1 caractère spécial (@#$%^&+=)
+                            </small>
+                        </div>
+
+                        <!-- Numéro de téléphone -->
+                        <div class="form-group">
+                            <label class="control-label required-field" for="phone">Numéro de téléphone</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <select class="form-control" id="phonePrefix" style="max-width: 120px;">
+                                        <option value="+216">+216 (Tunisie)</option>
+                                        <option value="+974">+974 (Qatar)</option>
+                                    </select>
+                                </div>
+                                <input id="phone" type="tel" class="form-control" th:field="*{phone}"
+                                    pattern="\+216\d{8}|\+974\d{8}"
+                                    title="Format: +21612345678 ou +97412345678"
+                                    placeholder="12345678" required />
+                            </div>
+                        </div>
+
+                        <!-- CIN -->
+                        <div class="form-group">
+                            <label class="control-label required-field" for="cin">CIN</label>
+                            <input id="cin" type="text" class="form-control" th:field="*{cin}"
+                                pattern="^\d{8}$" 
+                                title="Exactement 8 chiffres"
+                                placeholder="12345678" required />
+                        </div>
+
+                        <!-- Date de naissance -->
+                        <div class="form-group">
+                            <label class="control-label required-field" for="birthDate">Date de naissance</label>
+                            <input id="birthDate" type="date" class="form-control" 
+                                th:field="*{birthDate}" max="" required />
+                        </div>
+
+                        <!-- Pays -->
+                        <div class="form-group">
+                            <label class="control-label required-field" for="country">Pays</label>
+                            <select id="country" class="form-control" th:field="*{country}" required>
+                                <option value="">-- Sélectionnez un pays --</option>
+                                <option value="Tunisie">Tunisie</option>
+                                <option value="Katar">Katar</option>
+                            </select>
+                        </div>
+
+                        <h4>Informations Ambassadeur</h4>
+                        <hr>
+
+                        <!-- Type d'Ambassadeur -->
+                        <div class="form-group">
+                            <label class="control-label required-field" for="typeAmbassadeur">Type d'Ambassadeur</label>
+                            <select id="typeAmbassadeur" class="form-control" th:field="*{typeAmbassadeur}" required>
+                                <option value="">-- Sélectionnez un type --</option>
+                                <option value="INDIVIDUEL">Ambassadeur Individuel</option>
+                                <option value="ASSOCIATION">Représentant d'Association</option>
+                            </select>
+                        </div>
+
+                        <!-- Association -->
+                        <div class="form-group" id="associationField" style="display: none;">
+                            <label class="control-label" for="association">Nom de l'Association</label>
+                            <input id="association" type="text" class="form-control" th:field="*{association}" />
+                        </div>
+
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary">Soumettre la demande</button>
+                            <a th:href="@{/}" class="btn btn-default">Annuler</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <p>Déjà inscrit? <a th:href="@{/login}">Connectez-vous ici</a></p>
+        </div>
+    </div>
+</div>
+
+<!-- JavaScript -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Max date = aujourd’hui pour la date de naissance
+    document.getElementById('birthDate').max = new Date().toISOString().split('T')[0];
+
+    // Gérer l’affichage du champ association
+    const typeAmbassadeur = document.getElementById('typeAmbassadeur');
+    const associationField = document.getElementById('associationField');
+
+    typeAmbassadeur.addEventListener('change', function () {
+        if (this.value === 'ASSOCIATION') {
+            associationField.style.display = 'block';
+            document.getElementById('association').setAttribute('required', 'required');
+        } else {
+            associationField.style.display = 'none';
+            document.getElementById('association').removeAttribute('required');
+        }
+    });
+
+    // Validation dynamique
+    const form = document.getElementById('registrationForm');
+    const inputs = form.querySelectorAll('input, select');
+    inputs.forEach(input => {
+        input.addEventListener('input', function () {
+            if (this.checkValidity()) {
+                this.classList.remove('is-invalid');
+            } else {
+                this.classList.add('is-invalid');
+            }
+        });
+    });
+
+    // ➕ Ajouter le préfixe au numéro de téléphone avant soumission
+    document.getElementById('registrationForm').addEventListener('submit', function(e) {
+        const prefix = document.getElementById('phonePrefix').value;
+        const phoneInput = document.getElementById('phone');
+
+        if (!phoneInput.value.startsWith(prefix)) {
+            phoneInput.value = prefix + phoneInput.value;
+        }
+    });
+});
+</script>
+
+</body>
+</html>
