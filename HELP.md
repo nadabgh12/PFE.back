@@ -1,27 +1,32 @@
-# Getting Started
+# Projet  nom " ...."
+Décrire un résumé du projet ici...
 
-### Reference Documentation
-For further reference, please consider the following sections:
+### Configuration
 
-* [Official Apache Maven documentation](https://maven.apache.org/guides/index.html)
-* [Spring Boot Maven Plugin Reference Guide](https://docs.spring.io/spring-boot/docs/2.3.1.RELEASE/maven-plugin/reference/html/)
-* [Create an OCI image](https://docs.spring.io/spring-boot/docs/2.3.1.RELEASE/maven-plugin/reference/html/#build-image)
-* [Spring Boot DevTools](https://docs.spring.io/spring-boot/docs/2.3.1.RELEASE/reference/htmlsingle/#using-boot-devtools)
-* [Spring Data JPA](https://docs.spring.io/spring-boot/docs/2.3.1.RELEASE/reference/htmlsingle/#boot-features-jpa-and-spring-data)
-* [Spring Security](https://docs.spring.io/spring-boot/docs/2.3.1.RELEASE/reference/htmlsingle/#boot-features-security)
-* [Thymeleaf](https://docs.spring.io/spring-boot/docs/2.3.1.RELEASE/reference/htmlsingle/#boot-features-spring-mvc-template-engines)
-* [Spring Web](https://docs.spring.io/spring-boot/docs/2.3.1.RELEASE/reference/htmlsingle/#boot-features-developing-web-applications)
+mettre quelque configuration et explication
 
-### Guides
-The following guides illustrate how to use some features concretely:
+### Compilation
+mvn clean install
 
-* [Accessing Data with JPA](https://spring.io/guides/gs/accessing-data-jpa/)
-* [Accessing data with MySQL](https://spring.io/guides/gs/accessing-data-mysql/)
-* [Securing a Web Application](https://spring.io/guides/gs/securing-web/)
-* [Spring Boot and OAuth2](https://spring.io/guides/tutorials/spring-boot-oauth2/)
-* [Authenticating a User with LDAP](https://spring.io/guides/gs/authenticating-ldap/)
-* [Handling Form Submission](https://spring.io/guides/gs/handling-form-submission/)
-* [Building a RESTful Web Service](https://spring.io/guides/gs/rest-service/)
-* [Serving Web Content with Spring MVC](https://spring.io/guides/gs/serving-web-content/)
-* [Building REST services with Spring](https://spring.io/guides/tutorials/bookmarks/)
+### Installation
+
+Comment installer le projet (pré-requis.. ) Java ? 8, 21 ?
+
+##### NOTES TODO #####
+
+- Créer un fichier init base de données pour créer les tables + inserer les roles
+- Ecrire des test unitaires, tests d'integrations (si tu auras le temps)
+- J'ai fait un test complet (créer un ambassadeur + se connecter avec) mais la page dashboard ambassadeur n'existe pas.
+- Ton erreur sur la connexion est que tu avais un retour null sur getStatus(), je l'ai corrigé.
+- J'ai ajouté une page swagger permet d'afficher les webservice url: http://localhost:8080/swagger-ui.html
+- Je vois theamleaf controller MVC, et tu as fait projet web angular, si tu maitrise angular, c'est bien de le faire avec angular, mais je vois que c'est plus dur à faire.
+ ça va dépendre de tes connaissances, avec theamleaf c'est plus rapide, soit l'un soit l'autre.
+- Tu as une erreur sur le role parrain soit role_parraineur soit parrain, il faut garder un seul nom.
+- Tu as une erreur sur le nom du pays Qatar et pas Katar
+- les gouvenerats ne changent jamais faut les sauvegarder dans la base.
+
+
+Pour le front je n'ai pas vu encore. Je ferai quand j'aurai le temps.
+
+Bon courage!
 

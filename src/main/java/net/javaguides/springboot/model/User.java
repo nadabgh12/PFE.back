@@ -212,23 +212,23 @@ public class User {
         this.roles = roles;
     }
 
-	public Object getStatus() {
-		// TODO Auto-generated method stub
-		return null;
+	public String getStatus() {
+		return status;
 	}
 
-	public void setLastName(String lastName2) {
-		// TODO Auto-generated method stub
-		
-	}
+    public Long getId() {
+        return id;
+    }
 
-	public Object getId() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	public User orElseThrow(Object object) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
 }
