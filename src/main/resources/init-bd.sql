@@ -1,5 +1,6 @@
 
 --- Il faut initialisé les roles !? sinon comment tu dois créer un utilisateur
+CREATE DATABASE Ahmini;
 USE Ahmini;
 insert into roles(id,name) values (1,'ROLE_AMBASSADEUR');
 insert into roles(id,name) values (1,'ROLE_PARRAINEUR');
