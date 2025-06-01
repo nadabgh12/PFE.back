@@ -79,7 +79,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/dashboard-parrain").hasAuthority("ROLE_PARRAIN")
                 .antMatchers("/dashboard-ambassadeur").hasAuthority("ROLE_AMBASSADEUR")
                 .antMatchers("/api/login").permitAll()
-                .antMatchers("parraineur").permitAll()
                 .anyRequest().authenticated()
             .and()
             .formLogin()
