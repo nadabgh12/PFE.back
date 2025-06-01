@@ -118,7 +118,6 @@ import java.util.*;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
-
 @RequestMapping("/api/registration")
 public class RegistrationApiController {
 

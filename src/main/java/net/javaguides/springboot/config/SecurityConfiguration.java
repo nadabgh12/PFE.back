@@ -72,12 +72,14 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             .csrf().disable() // Utiliser avec précaution en production
             .authorizeRequests()
                 .antMatchers("/", "/js/**", "/css/**", "/img/**", "/webjars/**").permitAll()
+                .antMatchers("/api/user").permitAll()
                 .antMatchers("/login", "/registration/**", "/api/registration/**", "/swagger-ui.html",
                         "/swagger-resources/**", "/v2/api-docs", "/webjars/**").permitAll()
                 .antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                 .antMatchers("/dashboard-parrain").hasAuthority("ROLE_PARRAIN")
                 .antMatchers("/dashboard-ambassadeur").hasAuthority("ROLE_AMBASSADEUR")
                 .antMatchers("/api/login").permitAll()
+                .antMatchers("parraineur").permitAll()
                 .anyRequest().authenticated()
             .and()
             .formLogin()
